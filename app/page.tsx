@@ -1,103 +1,86 @@
-"use client";
-
-import Image from "next/image";
-import { useState } from "react";
+import { Navbar } from "./components/navbar"
 
 export default function Home() {
-  const [activeMenu, setActiveMenu] = useState('inicio');
-  
-  const menuItems = [
-    { id: 'inicio', label: 'Inicio' },
-    { id: 'nosotros', label: 'Nosotros' },
-    { id: 'productos', label: 'Productos' },
-    { id: 'servicios', label: 'Servicios' },
-    { id: 'contacto', label: 'Contacto' }
-  ];
-
   return (
-    <div 
-      className="flex min-h-screen flex-col bg-zinc-50 font-sans dark:bg-black"
-      style={{
-        backgroundImage: 'url("/Imagen2Fondo.png")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
-      <nav className="bg-white/90 dark:bg-black/90 backdrop-blur-sm shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <Image
-                className="dark:invert"
-                src="/next.svg"
-                alt="Next.js logo"
-                width={100}
-                height={20}
-              />
-            </div>
-            <div className="flex space-x-4">
-              {menuItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveMenu(item.id)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    activeMenu === item.id
-                      ? 'bg-gray-900 text-white dark:bg-white dark:text-black'
-                      : 'text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+    <main className="min-h-screen bg-background">
+      <Navbar />
+      
+      {/* Hero Section para demostrar el navbar */}
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
+        
+        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+            Bienvenidos
+          </p>
+          <h1 className="text-balance text-5xl font-medium tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+            Creamos experiencias
+            <br />
+            <span className="text-muted-foreground">digitales únicas</span>
+          </h1>
+          <p className="mx-auto mt-8 max-w-2xl text-pretty text-lg text-muted-foreground leading-relaxed">
+            Transformamos ideas en soluciones innovadoras que impulsan 
+            el crecimiento de tu negocio en el mundo digital.
+          </p>
+          
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="/productos"
+              className="inline-flex items-center justify-center rounded-full bg-foreground px-8 py-3 text-sm font-medium text-background transition-all duration-300 hover:scale-105"
+            >
+              Ver productos
+            </a>
+            <a
+              href="/nosotros"
+              className="inline-flex items-center justify-center rounded-full border border-border px-8 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:border-foreground"
+            >
+              Conocer más
+            </a>
           </div>
         </div>
-      </nav>
+        
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-xs text-muted-foreground">Scroll</span>
+            <div className="h-12 w-px bg-gradient-to-b from-muted-foreground to-transparent" />
+          </div>
+        </div>
+      </section>
       
-      <main className="flex-1 flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white/80 dark:bg-black/80 backdrop-blur-sm sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            Soluciones Informáticas Integrales Pergamino .
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Ofrecemos servicios Informáticos de manera integral para empesas y particulares.
-          </p>
+      {/* Second section to demonstrate scroll behavior */}
+      <section className="min-h-screen bg-foreground px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="text-4xl font-medium text-background sm:text-5xl">
+            Nuestros servicios
+          </h2>
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {["Diseño Web", "Desarrollo", "Marketing Digital"].map((service, index) => (
+              <div
+                key={service}
+                className="group relative overflow-hidden rounded-2xl border border-background/10 bg-background/5 p-8 transition-all duration-300 hover:bg-background/10"
+              >
+                <span className="text-6xl font-light text-background/20">
+                  0{index + 1}
+                </span>
+                <h3 className="mt-4 text-xl font-medium text-background">
+                  {service}
+                </h3>
+                <p className="mt-2 text-sm text-background/60 leading-relaxed">
+                  Soluciones personalizadas para llevar tu negocio al siguiente nivel.
+                </p>
+                <div className="mt-6 inline-flex items-center text-sm text-background/80 transition-colors group-hover:text-background">
+                  Saber más
+                  <svg className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+      </section>
+    </main>
+  )
 }
