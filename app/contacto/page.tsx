@@ -2,8 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "../components/navbar"
-import { Mail, Phone, User, MessageSquare, Send } from "lucide-react"
-import Image from "next/image"
+import { Mail, Phone, User, MessageSquare, Send, Loader2, CheckCircle } from "lucide-react"
 
 export default function Contacto() {
   const [formData, setFormData] = useState({
@@ -13,6 +12,9 @@ export default function Contacto() {
     asunto: "",
     mensaje: ""
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -22,22 +24,53 @@ export default function Contacto() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    // Crear el mailto con los datos del formulario
-    const mailtoLink = `mailto:info@siip.com?subject=${encodeURIComponent(formData.asunto)}&body=${encodeURIComponent(
-      `Nombre/Empresa: ${formData.nombre}\n` +
-      `Email: ${formData.email}\n` +
-      `Teléfono: ${formData.telefono}\n\n` +
-      `Mensaje:\n${formData.mensaje}`
-    )}`
-    
-    window.location.href = mailtoLink
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    setErrorMessage("")
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        // Limpiar formulario
+        setFormData({
+          nombre: "",
+          email: "",
+          telefono: "",
+          asunto: "",
+          mensaje: ""
+        })
+        
+        // Ocultar mensaje de éxito después de 5 segundos
+        setTimeout(() => {
+          setSubmitStatus('idle')
+        }, 5000)
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(data.error || 'Error al enviar el mensaje')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+      setErrorMessage('Error de conexión. Por favor, intenta nuevamente.')
+      console.error('Error:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleWhatsApp = () => {
-    const whatsappNumber = "5492477698740" // Formato internacional
+    const whatsappNumber = "5492477698740"
     const message = encodeURIComponent("Hola, me gustaría contactarme con ustedes")
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank')
   }
@@ -63,6 +96,24 @@ export default function Contacto() {
             </p>
           </div>
 
+          {/* Mensajes de estado */}
+          {submitStatus === 'success' && (
+            <div className="mb-8 rounded-xl bg-green-50 border border-green-200 p-4 flex items-center gap-3">
+              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
+              <p className="text-green-800 font-medium">
+                ¡Mensaje enviado correctamente! Te contactaremos pronto.
+              </p>
+            </div>
+          )}
+
+          {submitStatus === 'error' && (
+            <div className="mb-8 rounded-xl bg-red-50 border border-red-200 p-4">
+              <p className="text-red-800 font-medium">
+                {errorMessage}
+              </p>
+            </div>
+          )}
+
           {/* Formulario */}
           <div className="relative">
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -80,7 +131,8 @@ export default function Contacto() {
                     required
                     value={formData.nombre}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border bg-background pl-12 pr-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all"
+                    disabled={isSubmitting}
+                    className="w-full rounded-xl border border-border bg-background pl-12 pr-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="Tu nombre o empresa"
                   />
                 </div>
@@ -100,7 +152,8 @@ export default function Contacto() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border bg-background pl-12 pr-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all"
+                    disabled={isSubmitting}
+                    className="w-full rounded-xl border border-border bg-background pl-12 pr-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="tu@email.com"
                   />
                 </div>
@@ -120,7 +173,8 @@ export default function Contacto() {
                     required
                     value={formData.telefono}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border bg-background pl-12 pr-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all"
+                    disabled={isSubmitting}
+                    className="w-full rounded-xl border border-border bg-background pl-12 pr-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="+54 11 1234-5678"
                   />
                 </div>
@@ -140,7 +194,8 @@ export default function Contacto() {
                     required
                     value={formData.asunto}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-border bg-background pl-12 pr-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all"
+                    disabled={isSubmitting}
+                    className="w-full rounded-xl border border-border bg-background pl-12 pr-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="¿En qué podemos ayudarte?"
                   />
                 </div>
@@ -158,7 +213,8 @@ export default function Contacto() {
                   rows={6}
                   value={formData.mensaje}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-border bg-background px-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all resize-none"
+                  disabled={isSubmitting}
+                  className="w-full rounded-xl border border-border bg-background px-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Cuéntanos más sobre tu proyecto o consulta..."
                 />
               </div>
@@ -168,17 +224,28 @@ export default function Contacto() {
                 {/* Botón Enviar */}
                 <button
                   type="submit"
-                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 text-sm font-medium text-background transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                  disabled={isSubmitting}
+                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 text-sm font-medium text-background transition-all duration-300 hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  <Send className="h-5 w-5" />
-                  Enviar consulta por email
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-5 w-5" />
+                      Enviar consulta por email
+                    </>
+                  )}
                 </button>
 
                 {/* Botón WhatsApp */}
                 <button
                   type="button"
                   onClick={handleWhatsApp}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#25D366] bg-[#25D366] px-8 py-4 text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-[#20BA5A]"
+                  disabled={isSubmitting}
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#25D366] bg-[#25D366] px-8 py-4 text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:bg-[#20BA5A] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   <svg 
                     className="h-6 w-6" 

@@ -1,3 +1,4 @@
+"use client"
 import { Navbar } from "./components/navbar"
 
 export default function Home() {
@@ -26,8 +27,12 @@ export default function Home() {
           
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="/productos"
+              href="/#servicios"
               className="inline-flex items-center justify-center rounded-full bg-foreground px-8 py-3 text-sm font-medium text-background transition-all duration-300 hover:scale-105"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              }}
             >
               Ver Servicios
             </a>
@@ -50,13 +55,13 @@ export default function Home() {
       </section>
       
       {/* Second section to demonstrate scroll behavior */}
-      <section className="min-h-screen bg-foreground px-6 py-24">
+      <section id="servicios" className="min-h-screen bg-foreground px-6 py-24 scroll-mt-20">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-4xl font-medium text-background sm:text-5xl">
             Nuestros servicios
           </h2>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {["Diseño Web", "Desarrollo de Aplicaciones", "Soporte Técnico","Infrastuctura/Redes"].map((service, index) => (
+            {["Diseño Web", "Desarrollo de Aplicaciones", "Soporte Técnico","Infraestructura/Redes"].map((service, index) => (
               <div
                 key={service}
                 className="group relative overflow-hidden rounded-2xl border border-background/10 bg-background/5 p-8 transition-all duration-300 hover:bg-background/10"
