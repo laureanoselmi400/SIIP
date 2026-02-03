@@ -29,13 +29,13 @@ export default function Home() {
               href="/productos"
               className="inline-flex items-center justify-center rounded-full bg-foreground px-8 py-3 text-sm font-medium text-background transition-all duration-300 hover:scale-105"
             >
-              Ver productos
+              Ver Servicios
             </a>
             <a
               href="/nosotros"
               className="inline-flex items-center justify-center rounded-full border border-border px-8 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:border-foreground"
             >
-              Conocer más
+              Conocer más sobre nosotros
             </a>
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function Home() {
             Nuestros servicios
           </h2>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {["Diseño Web", "Desarrollo", "Marketing Digital"].map((service, index) => (
+            {["Diseño Web", "Desarrollo de Aplicaciones", "Soporte Técnico","Infrastuctura/Redes"].map((service, index) => (
               <div
                 key={service}
                 className="group relative overflow-hidden rounded-2xl border border-background/10 bg-background/5 p-8 transition-all duration-300 hover:bg-background/10"

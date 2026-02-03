@@ -7,7 +7,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Marca - Experiencias Digitales',
+  title: 'Soluciones informáticas integrales Pergamino',
   description: 'Creamos experiencias digitales únicas que impulsan el crecimiento de tu negocio',
   generator: 'v0.app',
   icons: {
