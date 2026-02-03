@@ -1,9 +1,22 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const [activeMenu, setActiveMenu] = useState('inicio');
+  
+  const menuItems = [
+    { id: 'inicio', label: 'Inicio' },
+    { id: 'nosotros', label: 'Nosotros' },
+    { id: 'productos', label: 'Productos' },
+    { id: 'servicios', label: 'Servicios' },
+    { id: 'contacto', label: 'Contacto' }
+  ];
+
   return (
     <div 
-      className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black"
+      className="flex min-h-screen flex-col bg-zinc-50 font-sans dark:bg-black"
       style={{
         backgroundImage: 'url("/Imagen2Fondo.png")',
         backgroundSize: 'cover',
@@ -11,7 +24,38 @@ export default function Home() {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+      <nav className="bg-white/90 dark:bg-black/90 backdrop-blur-sm shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <Image
+                className="dark:invert"
+                src="/next.svg"
+                alt="Next.js logo"
+                width={100}
+                height={20}
+              />
+            </div>
+            <div className="flex space-x-4">
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveMenu(item.id)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    activeMenu === item.id
+                      ? 'bg-gray-900 text-white dark:bg-white dark:text-black'
+                      : 'text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <main className="flex-1 flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white/80 dark:bg-black/80 backdrop-blur-sm sm:items-start">
         <Image
           className="dark:invert"
           src="/next.svg"
