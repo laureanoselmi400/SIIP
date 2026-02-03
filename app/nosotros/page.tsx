@@ -45,10 +45,7 @@ export default function Nosotros() {
       <section className="relative pt-32 pb-20 px-6">
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-16">
-            <p className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
-              Nosotros
-            </p>
-            <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl mb-6">
+                        <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl mb-6">
               Soluciones Informáticas
               <br />
               <span className="text-muted-foreground">Integrales Pergamino</span>

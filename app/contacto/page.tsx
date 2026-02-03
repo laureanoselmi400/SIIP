@@ -83,9 +83,6 @@ export default function Contacto() {
         <div className="mx-auto max-w-4xl">
           {/* Header */}
           <div className="text-center mb-16">
-            <p className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
-              Contacto
-            </p>
             <h1 className="text-5xl font-medium tracking-tight text-foreground sm:text-6xl">
               Hablemos de tu
               <br />
