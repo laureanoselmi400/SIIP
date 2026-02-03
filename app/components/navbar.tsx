@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
+import Image from "next/image"
 
 const navItems = [
   { name: "Inicio", href: "/" },
@@ -24,8 +25,12 @@ export function Navbar() {
             href="/" 
             className="relative z-10 text-xl font-medium tracking-tight text-foreground transition-opacity hover:opacity-70"
           >
-            <span className="font-semibold">Soluciones Informáticas Integrales Pergamino</span>
-            <span className="text-muted-foreground">.</span>
+            <Image 
+              src="/LogoNegro.png" 
+              width={200} 
+              height={500} 
+              alt="SIIP Logo"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -120,8 +125,8 @@ export function Navbar() {
               transitionDelay: isOpen ? "500ms" : "0ms",
             }}
           >
-            <p>info@marca.com</p>
-            <p className="mt-1">+54 11 1234-5678</p>
+            <p>info@siip.com</p>
+            <p className="mt-1">+54 9 2477 69-8740</p>
           </div>
         </div>
       </div>
