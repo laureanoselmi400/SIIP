@@ -1,4 +1,5 @@
 "use client"
+
 import { Navbar } from "./components/navbar"
 
 export default function Home() {
@@ -61,16 +62,22 @@ export default function Home() {
             Nuestros servicios
           </h2>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {["Diseño Web", "Desarrollo de Aplicaciones", "Soporte Técnico","Infraestructura/Redes"].map((service, index) => (
-              <div
-                key={service}
-                className="group relative overflow-hidden rounded-2xl border border-background/10 bg-background/5 p-8 transition-all duration-300 hover:bg-background/10"
+            {[
+              { name: "Diseño Web", href: "/servicios/diseno-web" },
+              { name: "Desarrollo de Aplicaciones", href: "#" },
+              { name: "Soporte Técnico", href: "#" },
+              { name: "Infraestructura/Redes", href: "#" }
+            ].map((service, index) => (
+              <a
+                key={service.name}
+                href={service.href}
+                className="group relative overflow-hidden rounded-2xl border border-background/10 bg-background/5 p-8 transition-all duration-300 hover:bg-background/10 block"
               >
                 <span className="text-6xl font-light text-background/20">
                   0{index + 1}
                 </span>
                 <h3 className="mt-4 text-xl font-medium text-background">
-                  {service}
+                  {service.name}
                 </h3>
                 <p className="mt-2 text-sm text-background/60 leading-relaxed">
                   Soluciones personalizadas para llevar tu negocio al siguiente nivel.
@@ -81,7 +88,7 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
