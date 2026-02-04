@@ -126,10 +126,7 @@ export default function DisenoWeb() {
         
         <div className="relative z-10 mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 rounded-full bg-foreground/5 px-4 py-2 mb-6">
-              <Globe className="w-4 h-4 text-foreground" />
-              <span className="text-sm font-medium text-foreground">Diseño Web</span>
-            </div>
+            
             <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl mb-6">
               Tu Presencia Digital
               <br />
