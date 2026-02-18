@@ -8,7 +8,7 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <Navbar />
       <WhatsAppFloat />
-      
+
       {/* Hero Section para demostrar el navbar */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
         {/* Background pattern */}
@@ -48,13 +48,7 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-xs text-muted-foreground">Scroll</span>
-            <div className="h-12 w-px bg-gradient-to-b from-muted-foreground to-transparent" />
-          </div>
-        </div>
+        
       </section>
       
       {/* Second section to demonstrate scroll behavior */}
