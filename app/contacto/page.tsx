@@ -264,7 +264,7 @@ export default function Contacto() {
             </p>
             <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm">
               <a href="mailto:info@siip.com" className="text-foreground hover:text-muted-foreground transition-colors">
-                info@siip.com
+                info@siipweb.com.ar
               </a>
               <span className="hidden sm:block text-muted-foreground">•</span>
               <a href="tel:+5492477698740" className="text-foreground hover:text-muted-foreground transition-colors">
