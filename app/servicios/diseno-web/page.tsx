@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Navbar } from "../../components/navbar"
+import { WhatsAppFloat } from "../../components/whatsapp-float"
 import { 
   Globe, 
   TrendingUp, 
@@ -117,6 +118,7 @@ export default function DisenoWeb() {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
+      <WhatsAppFloat />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden">

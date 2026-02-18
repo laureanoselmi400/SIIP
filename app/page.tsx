@@ -1,11 +1,13 @@
 "use client"
 
 import { Navbar } from "./components/navbar"
+import { WhatsAppFloat } from "./components/whatsapp-float"
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
+      <WhatsAppFloat />
       
       {/* Hero Section para demostrar el navbar */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">

@@ -1,6 +1,7 @@
 "use client"
 
 import { Navbar } from "../components/navbar"
+import { WhatsAppFloat } from "../components/whatsapp-float"
 import { Building2, Users, Wrench, CheckCircle2 } from "lucide-react"
 
 export default function Nosotros() {
@@ -40,6 +41,7 @@ export default function Nosotros() {
   return (
     <main className="min-h-screen bg-background font-['Inter',sans-serif]">
       <Navbar />
+      <WhatsAppFloat />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6">
