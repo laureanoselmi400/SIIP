@@ -250,10 +250,15 @@ export default function SoporteTecnico() {
                       ))}
                     </div>
 
-                    <button className="inline-flex items-center gap-2 text-sm font-medium text-foreground group-hover:gap-3 transition-all">
+                    <a
+                      href={`https://wa.me/5492477698740?text=${encodeURIComponent(`Quiero obtener información sobre el servicio: ${servicio.titulo}`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-foreground group-hover:gap-3 transition-all"
+                    >
                       Consultar servicio
                       <ArrowRight className="w-4 h-4" />
-                    </button>
+                    </a>
                   </div>
 
                   {/* Animated border glow */}
@@ -263,17 +268,29 @@ export default function SoporteTecnico() {
             })}
           </div>
 
-         </div>
+          <div className="mt-12 text-center">
+            <p className="text-muted-foreground mb-6">
+              ¿Tenés una necesidad técnica específica que no encontrás aquí?
+            </p>
+            <a
+              href="/contacto"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 text-sm font-medium text-background transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              Consultar Caso Particular
+              <ArrowRight className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* CTA Final */}
       <section className="py-24 px-6 bg-gradient-to-br from-blue-600 via-cyan-600 to-green-600">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
-            ¿Tenés una necesidad técnica específica que no encontrás aquí?
+            ¿Tu tecnología necesita atención?
           </h2>
           <p className="text-white/90 text-lg mb-8 leading-relaxed">
-            Contactanos hoy y recibí una evaluación gratuita.
+            Contactanos hoy y recibí una evaluación gratuita de tu infraestructura tecnológica.
             Estamos listos para ayudarte.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -284,7 +301,12 @@ export default function SoporteTecnico() {
               Solicitar Soporte Ahora
               <ArrowRight className="w-5 h-5" />
             </a>
-            
+            <a
+              href="/#servicios"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white px-8 py-4 text-sm font-medium text-white transition-all duration-300 hover:bg-white hover:text-gray-900"
+            >
+              Ver Todos los Servicios
+            </a>
           </div>
         </div>
       </section>
