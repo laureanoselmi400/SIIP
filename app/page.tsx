@@ -61,7 +61,7 @@ export default function Home() {
             {[
               { name: "Diseño Web", href: "/servicios/diseno-web" },
               { name: "Desarrollo de Aplicaciones", href: "#" },
-              { name: "Soporte Técnico", href: "#" },
+              { name: "Soporte Técnico", href: "/servicios/soporte-tecnico" },
               { name: "Infraestructura/Redes", href: "#" }
             ].map((service, index) => (
               <a

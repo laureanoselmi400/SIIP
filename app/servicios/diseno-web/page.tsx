@@ -308,7 +308,7 @@ export default function DisenoWeb() {
           </h2>
           <p className="text-white/90 text-lg mb-8 leading-relaxed">
             Agenda una consultoría gratuita y descubre cómo un sitio web profesional 
-            puede transformar tu negocio
+            puede transformar tu negociowh
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
